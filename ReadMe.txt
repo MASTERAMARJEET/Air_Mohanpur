@@ -1,2 +1,1 @@
 Hi Tahiti
-Hi Omkar
