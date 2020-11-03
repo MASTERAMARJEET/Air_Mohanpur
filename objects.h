@@ -16,30 +16,34 @@ typedef struct
 
 typedef struct
 {
-    char name[20];
+    char name[50];
     char id[20];
     char password[20];
     int age;
     enum Gender gender;
     char phone_no[15];
-    char email[30];
+    char email[50];
 }User;
 
 typedef struct
 {
-    char name[20];
+    char name[50];
     int age;
     enum AgeGrp category;
 }Passenger;
 
 typedef struct
 {
+    char psngr_name[50];
+    enum AgeGrp psngr_category;
     char flight_no[10];
+    char airline_name[20];
     char source[20];
     char destination[20];
+    char seat_no[10];
     struct tm arrive_time;
     struct tm depart_time;
-    char seat_no[10];
+    struct tm booking_time;
 }Ticket;
 
 typedef struct
@@ -47,6 +51,7 @@ typedef struct
     char source[20];
     char destination[20];
     char flight_no[15];
+    char airline_name[20];
     struct tm arrive_time;
     struct tm depart_time;
     int total_seats;
