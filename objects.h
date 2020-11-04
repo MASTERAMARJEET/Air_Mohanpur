@@ -44,6 +44,7 @@ typedef struct
     struct tm arrive_time;
     struct tm depart_time;
     struct tm booking_time;
+    char status[15];
 }Ticket;
 
 typedef struct
