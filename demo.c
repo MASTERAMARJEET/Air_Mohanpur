@@ -56,17 +56,23 @@ void main(){
     printf("The arrival time is %s", asctime(&arrival_time));
 
 
-    Ticket ticket1 = {"AM7171",
+    Ticket ticket1 = {"Passenger1",
+                        Adult,
+                        "AM7171",
+                        "Air India",
                         "Mohanpur",
                         "Kolkata",
+                        "FW21",
                         depart_time,
                         arrival_time,
-                        "FW21"};
+                        now,
+                        "Cancelled"};
 
     // Object 5
     Flight flight1 = {"Mohanpur",
                         "Kolkata",
                         "ZSH2148",
+                        "Air India",
                         depart_time,
                         arrival_time,
                         75,
