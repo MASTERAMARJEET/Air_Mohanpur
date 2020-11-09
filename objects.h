@@ -9,7 +9,7 @@
     - [1] Female
     - [2] Others
 */
-typedef enum Gender {Male, Female, Others};
+enum Gender {Male, Female, Others};
 
 /* enum for Age Group of Passanger:
     - [0] Infant
@@ -17,7 +17,7 @@ typedef enum Gender {Male, Female, Others};
     - [2] Adult
     - [3] Senior
 */
-typedef enum AgeGrp {Infant, Child, Adult, Senior};
+enum AgeGrp {Infant, Child, Adult, Senior};
 
 /* (Custom) Data Type for Admins.
     Fields (**Mind the size for strings**):
