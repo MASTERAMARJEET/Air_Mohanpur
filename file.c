@@ -13,16 +13,15 @@ void writeFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     FILE *fptr;
     fptr = fopen(file_name,"w");
 
-	if (fptr == NULL)
-	{
-		printf("Couldn't open file: %s\n",file_name);
-		return;
-	}
+    if (fptr == NULL)
+    {
+        printf("Couldn't open file: %s\n",file_name);
+        return;
+    }
 
     fwrite(data_ptr,data_size,elem_num,fptr);
 
     fclose(fptr);
-
 }
 
 /* Append array data to a file.
@@ -38,16 +37,15 @@ void appendFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     FILE *fptr;
     fptr = fopen(file_name,"a");
 
-	if (fptr == NULL)
-	{
-		printf("Couldn't open file: %s\n",file_name);
-		return;
-	}
+    if (fptr == NULL)
+    {
+        printf("Couldn't open file: %s\n",file_name);
+        return;
+    }
 
     fwrite(data_ptr,data_size,elem_num,fptr);
 
     fclose(fptr);
-
 }
 
 /* Read data from a file to array.
@@ -65,19 +63,21 @@ int readFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     FILE *fptr;
     fptr = fopen(file_name,"r");
 
-	if (fptr == NULL)
-	{
-		printf("Couldn't open file: %s\n",file_name);
-		return 0;
-	}
+    if (fptr == NULL)
+    {
+        printf("Couldn't open file: %s\n",file_name);
+        return 0;
+    }
 
     int elem_count=0;
 
-	while (!feof(fptr) && elem_count<elem_num)
-	{
+    while (!feof(fptr) && elem_count<elem_num)
+    {
         fread(data_ptr+((elem_count)*data_size),data_size,1,fptr);
         elem_count++;
-	}
+    }
+
+    fclose(fptr);
 
     if (feof(fptr)!=0)
         return elem_count - 1;
