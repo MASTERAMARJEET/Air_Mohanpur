@@ -29,9 +29,8 @@ void main()
     }
 
     // binary search sequence started
-    // Returns index of x if it is present in arr[], 
-    // else return -1 
-    char search_string = "tlle";
+    // Returns index of x if it is present in strings[], 
+    char search_string[] = "xall";
     { 
         int l = 0; 
         int r = arrlen - 1; 
@@ -42,7 +41,7 @@ void main()
         int res; 
         if (strcmp(search_string,strings[m])==0) 
             // Check if x is present at mid 
-            printf("The search string %s",strings[m]," was found at %d",m+1,"th position."); 
+            printf("The search string was found at %s,%d",strings[m],m); 
             
             // If x greater, ignore left half 
             if (strcmp(search_string,strings[m])>0) 
