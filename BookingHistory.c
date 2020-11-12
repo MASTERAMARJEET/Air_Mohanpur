@@ -19,63 +19,37 @@ void showbookinghistory(char ticket_file[])
         printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
         printf("Departure Time: %sArrival Time: %s",
             asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
+        
+        printf("Fare: %f\n",tickets[i].fare);
         printf("Status: %s\n\n",tickets[i].status);
     }
 }
 
-void appendFiles(char source[],char destination[])
+void cancelticket(char ticket_file[])
 {
-    FILE *fp = fopen(source, "w");
-    if (fp == NULL)
+    int i=0, ticket_num, cticket_num;
+    char sts[]="cancelled";
+     
+    Ticket tickets[20];
+
+    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
+    printf("Enter the ticket number of the flight you want to cancel:");
+    scanf("%d",cticket_num);
+    for (i=0;i<ticket_num;i++)
     {
-        puts("Couldn't open file");
-        exit(0);
-    }
-    else
-    {
-        fputs("12/12/20\t\tkolkata->Delhi\t\tindigo\t\t2\t\t10,563", fp);
-        puts("Done");
-        fclose(fp);
-    }
+    	if(i+1 == cticket_num)
+    	{
+    		printf("Ticket No.: %d\n",i+1);
+        	printf("Passanger Name: %s\n",tickets[i].psngr_name);
+        	printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
+        	printf("Departure Time: %sArrival Time: %s",
+            asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
+        	printf("Status: %s\n\n",strcpy(sts,tickets[i].status));
+        	printf("Fare: %f",tickets[i].fare);
+    		
+		}
+	}
 
-    FILE *fp1, *fp2;
-
-    // opening files
-    fp1 = fopen(source, "a+");
-    fp2 = fopen(destination, "a+");
-
-    // If file is not found then return.
-    if (!fp1 && !fp2)
-    {
-        printf("Unable to open/"
-            "detect file(s)\n");
-        return;
-    }
-
-    char buf[100];
-
-    // explicitly writing "\n"
-    // to the destination file
-    // so to enhance readability.
-    fprintf(fp2, "\n");
-
-    // writing the contents of
-    // source file to destination file.
-    while (!feof(fp1))
-    {
-        fgets(buf, sizeof(buf), fp1);
-        fprintf(fp2, "%s", buf);
-    }
-
-    rewind(fp2);
-
-    // printing contents of
-    // destination file to stdout.
-    while (!feof(fp2))
-    {
-        fgets(buf, sizeof(buf), fp2);
-        printf("%s", buf);
-    }
 }
 
 // Driver Code
@@ -90,13 +64,18 @@ int main()
     printf("Do you wish to view your Booking History(yes/no)\n");
     scanf("%s",x);
 
-    if(strcmp(x,y)==0)
+    if(strcmp(x,y)==0) //listing booking history
     {
         showbookinghistory(user_file);
     }
+    printf("Do you wish to cancel any file ticket that you are yet to tarvel(yes/no)\n");
+    scanf("%s",x);
+    
+    if(strcmp(x,y)==0) //cancelling ticket
+    {
+    	cancelticket(user_file);
+	}
 
-    // calling Function with file names.
-    // appendFiles(source, destination);
-
+   
     return 0;
 }
