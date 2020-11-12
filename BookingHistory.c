@@ -34,7 +34,7 @@ void cancelticket(char ticket_file[])
 
     ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
     printf("Enter the ticket number of the flight you want to cancel:");
-    scanf("%d",cticket_num);
+    scanf("%d",&cticket_num);
     for (i=0;i<ticket_num;i++)
     {
     	if(i+1 == cticket_num)
@@ -44,8 +44,9 @@ void cancelticket(char ticket_file[])
         	printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
         	printf("Departure Time: %sArrival Time: %s",
             asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
-        	printf("Status: %s\n\n",strcpy(sts,tickets[i].status));
-        	printf("Fare: %f",tickets[i].fare);
+        	strcpy(tickets[i].status,sts);
+            printf("Status: %s\n",tickets[i].status);
+        	printf("Fare: %f\n\n",tickets[i].fare);
     		
 		}
 	}
