@@ -3,6 +3,7 @@
 #include "file.h"
 
 void main(){
+    float fare = 1500;
     time_t current_time = time(NULL);
     printf("%ld\n",current_time);   // time_t gives time since epoch
 
@@ -29,6 +30,7 @@ void main(){
                         depart_time,
                         arrival_time,
                         now,
+                        fare,
                         "Yet to travel"},
 
                         {"Mother",
@@ -41,6 +43,7 @@ void main(){
                         depart_time,
                         arrival_time,
                         now,
+                        fare,
                         "Yet to travel"},
 
                         {"Son",
@@ -53,6 +56,7 @@ void main(){
                         depart_time,
                         arrival_time,
                         now,
+                        fare,
                         "Yet to travel"},
 
                         {"Daughter",
@@ -65,6 +69,7 @@ void main(){
                         depart_time,
                         arrival_time,
                         now,
+                        fare,
                         "Yet to travel"},
 
                         {"Grandpa",
@@ -77,13 +82,13 @@ void main(){
                         depart_time,
                         arrival_time,
                         now,
+                        fare,
                         "Yet to travel"}};
 
     char user_id[] = "demo_user";
     char user_file[50];
     strcpy(user_file,user_id);
     strcat(user_file,"_ticket.txt");
-
     writeFile(user_file, &tickets, sizeof(Ticket), 5);
 
 }
