@@ -11,14 +11,15 @@ void showbookinghistory(char ticket_file[])
 
     ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
 
-    printf("The tickets booked by you are listed below:\n");
+    printf("The tickets booked by you (%d in total) are listed below:\n", ticket_num);
 
     for (i=0;i<ticket_num;i++){
         printf("Ticket No.: %d\n",i+1);
         printf("Passanger Name: %s\n",tickets[i].psngr_name);
         printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
-        printf("Departure Time: %sArrival Time: %s\n",
+        printf("Departure Time: %sArrival Time: %s",
             asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
+        printf("Status: %s\n\n",tickets[i].status);
     }
 }
 
