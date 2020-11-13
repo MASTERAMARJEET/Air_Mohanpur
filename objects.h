@@ -1,7 +1,6 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
-#include<time.h>
 #include<stdbool.h>
 
 /* enum for Gender:
@@ -74,10 +73,10 @@ typedef struct
     > char source[20];
     > char destination[20];
     > char seat_no[10];
-    > struct tm arrive_time;
-    > struct tm depart_time;
-    > struct tm booking_time;
-    > char status[16];
+    > char arrive_time[50];
+    > char depart_time[50];
+    > float fare;
+    > char status[15];
 */
 typedef struct
 {
@@ -88,9 +87,8 @@ typedef struct
     char source[21];
     char destination[21];
     char seat_no[11];
-    struct tm arrive_time;
-    struct tm depart_time;
-    struct tm booking_time;
+    char arrive_time[51];
+    char depart_time[51];
     float fare;
     char status[15];
 }Ticket;
@@ -101,8 +99,8 @@ typedef struct
     > char destination[20];
     > char flight_no[15];
     > char airline_name[20];
-    > struct tm arrive_time;
-    > struct tm depart_time;
+    > char arrive_time[15];
+    > char depart_time[15];
     > int total_seats;
     > int seats_available;
     > bool is_available;
@@ -113,8 +111,8 @@ typedef struct
     char destination[21];
     char flight_no[16];
     char airline_name[21];
-    struct tm arrive_time;
-    struct tm depart_time;
+    char arrive_time[16];
+    char depart_time[16];
     int total_seats;
     int seats_available;
     bool is_available;

@@ -38,23 +38,7 @@ void main(){
 
     // Object 4
 
-    //Finding the current time using time function in time.h
-    time_t current_time = time(NULL);
-    printf("%ld\n",current_time);   // time_t gives time since epoch
-
-    struct tm now = *localtime(&(time_t){current_time});
-    printf("The now is %s", asctime(&now));
-
-    struct tm depart_time = now;
-    depart_time.tm_mon += 3;
-    mktime(&depart_time);
-    printf("The depart time is %s", asctime(&depart_time));
-
-    struct tm arrival_time = depart_time;
-    arrival_time.tm_hour += 3;
-    mktime(&arrival_time);
-    printf("The arrival time is %s", asctime(&arrival_time));
-
+    float fare = 2000;
 
     Ticket ticket1 = {"Passenger1",
                         Adult,
@@ -63,18 +47,18 @@ void main(){
                         "Mohanpur",
                         "Kolkata",
                         "FW21",
-                        depart_time,
-                        arrival_time,
-                        now,
-                        "Cancelled"};
+                        "2 Feb 2021 15:00 hrs",
+                        "2 Feb 2021 12:00 hrs",
+                        fare,
+                        "Yet to travel"};
 
     // Object 5
     Flight flight1 = {"Mohanpur",
                         "Kolkata",
                         "ZSH2148",
                         "Air India",
-                        depart_time,
-                        arrival_time,
+                        "15:00 hrs",
+                        "12:00 hrs",
                         75,
                         10,
                         true};
