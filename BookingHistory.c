@@ -16,10 +16,13 @@ void showbookinghistory(char ticket_file[])
     for (i=0;i<ticket_num;i++){
         printf("Ticket No.: %d\n",i+1);
         printf("Passanger Name: %s\n",tickets[i].psngr_name);
-        printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
-        printf("Departure Time: %sArrival Time: %s",
-            asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
-        
+        printf("Flight Number: %s\n",tickets[i].flight_no);
+    	printf("Airline name: %s\n",tickets[i].airline_name);
+        printf("Source: %s",tickets[i].source);
+		printf("\t\tDestination: %s \n", tickets[i].destination);
+        printf("Seat number: %s\n",tickets[i].seat_no);
+        printf("Arrival Time: %s \n",tickets[i].arrive_time);
+        printf("Departure Time: %s \n",tickets[i].depart_time);
         printf("Fare: %f\n",tickets[i].fare);
         printf("Status: %s\n\n",tickets[i].status);
     }
@@ -41,12 +44,17 @@ void cancelticket(char ticket_file[])
     	{
     		printf("Ticket No.: %d\n",i+1);
         	printf("Passanger Name: %s\n",tickets[i].psngr_name);
-        	printf("Source: %s; Destination: %s\n",tickets[i].source, tickets[i].destination);
-        	printf("Departure Time: %sArrival Time: %s",
-            asctime(&tickets[i].depart_time),asctime(&tickets[i].arrive_time));
-        	strcpy(tickets[i].status,sts);
-            printf("Status: %s\n",tickets[i].status);
+        	printf("Flight Number: %s\n",tickets[i].flight_no);
+    		printf("Airline name: %s\n",tickets[i].airline_name);
+        	printf("Source: %s",tickets[i].source);
+			printf("\t\tDestination: %s \n", tickets[i].destination);
+        	printf("Seat number: %s\n",tickets[i].seat_no);
+        	printf("Arrival Time: %s \n",tickets[i].arrive_time);
+        	printf("Departure Time: %s \n",tickets[i].depart_time);
         	printf("Fare: %f\n\n",tickets[i].fare);
+            strcpy(tickets[i].status,sts);
+            printf("Status: %s\n",tickets[i].status);
+        	
     		
 		}
 	}
