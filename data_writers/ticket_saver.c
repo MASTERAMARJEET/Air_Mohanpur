@@ -4,6 +4,7 @@
 
 void main(){
 
+    float fare=1500;
 
     Ticket tickets[5] = {{"Father",
                         Adult,
@@ -72,4 +73,4 @@ void main(){
     strcat(user_file,"_tickets.txt");
     writeFile(user_file, &tickets, sizeof(Ticket), 5);
 
-}}
+}
