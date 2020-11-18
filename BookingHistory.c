@@ -9,7 +9,7 @@ void showbookinghistory(char ticket_file[])
     int i=0, ticket_num;
     Ticket tickets[20];
 
-    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
+    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),5);
 
     printf("The tickets booked by you (%d in total) are listed below:\n", ticket_num);
 
@@ -35,9 +35,12 @@ void cancelticket(char ticket_file[])
      
     Ticket tickets[20];
 
-    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
+    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),5);
     printf("Enter the ticket number of the flight you want to cancel:");
     scanf("%d",&cticket_num);
+    if(&cticket_num <=5)
+	{
+	
     for (i=0;i<ticket_num;i++)
     {
     	if(i+1 == cticket_num)
@@ -57,6 +60,11 @@ void cancelticket(char ticket_file[])
         	
     		
 		}
+	}
+	}
+	else
+	{
+		printf("The ticket doesn't exist");
 	}
 
 }
