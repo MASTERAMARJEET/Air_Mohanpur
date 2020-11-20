@@ -53,7 +53,7 @@ void user_login()
 			printf("\nEnter your email \t: \t");
 			scanf("%50s", user.email);
 				
-			appendFile("User_list.txt",&user,sizeof(User),1); //check length of user array.
+			appendFile("data/User_list.txt",&user,sizeof(User),1); //check length of user array.
 		}
 		else 
 		{
@@ -70,7 +70,7 @@ void user_login()
 		scanf("%6s", us_pswd);
 		//have to search if these two exist and match.
 
-	rf = readFile("User_list.txt",&user_check,sizeof(User),99);
+	rf = readFile("data/User_list.txt",&user_check,sizeof(User),99);
 	
 	for (i=0; i<rf ; i=i+1)
 		{
@@ -118,7 +118,7 @@ void admin_login()
 		scanf("%6s", ad_pswd);
 		//have to search if these two exist and match.
 
-	rf = readFile("Admin_list.txt",&admin_check,sizeof(Admin),99);
+	rf = readFile("data/Admin_list.txt",&admin_check,sizeof(Admin),99);
 	
 	for (i=0; i<rf ; i=i+1)
 		{
