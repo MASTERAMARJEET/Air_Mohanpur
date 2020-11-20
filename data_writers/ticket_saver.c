@@ -4,7 +4,7 @@
 
 void main(){
 
-    float fare = 1500;
+    float fare=1500;
 
     Ticket tickets[5] = {{"Father",
                         Adult,
