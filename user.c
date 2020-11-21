@@ -5,10 +5,6 @@
 #include "file.h"
 
 
-void user_login();
-
-void admin_login();
-
 void user_login()
 {
 	char us_access[4], us_access_No[7], us_user[7], us_pswd[7], us_gender;

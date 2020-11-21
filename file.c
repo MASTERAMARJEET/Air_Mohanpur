@@ -22,6 +22,7 @@ void writeFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     fwrite(data_ptr,data_size,elem_num,fptr);
 
     fclose(fptr);
+
 }
 
 /* Append array data to a file.
@@ -46,6 +47,7 @@ void appendFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     fwrite(data_ptr,data_size,elem_num,fptr);
 
     fclose(fptr);
+
 }
 
 /* Read data from a file to array.
@@ -54,7 +56,7 @@ void appendFile(char *file_name, void* data_ptr, int data_size, int elem_num){
     - file_name - name of file from which data to be read
     - data_ptr - pointer (starting address) of array which will store the data
     - data_size - size of each element in the array
-    - elem_num - number of elements to be saved to array
+    - elem_num - number of elements to be read from array
 
     Returns: (**int**) number of elements sucessfully read.
 */
