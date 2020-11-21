@@ -101,6 +101,7 @@ typedef struct
     > char airline_name[20];
     > char arrive_time[15];
     > char depart_time[15];
+    > int distance;
     > int total_seats;
     > int seats_available;
     > bool is_available;
