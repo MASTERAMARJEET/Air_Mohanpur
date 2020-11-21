@@ -55,7 +55,7 @@ void main(){
                         "Yet to travel"},
 
                         {"Grandpa",
-                        Senior,
+                        Adult,
                         "KC1060",
                         "GoAir",
                         "Kolkata",

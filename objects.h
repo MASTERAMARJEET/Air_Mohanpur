@@ -14,9 +14,9 @@ enum Gender {Male, Female, Others};
     - [0] Infant
     - [1] Child
     - [2] Adult
-    - [3] Senior
+
 */
-enum AgeGrp {Infant, Child, Adult, Senior};
+enum AgeGrp {Infant, Child, Adult};
 
 /* (Custom) Data Type for Admins.
     Fields (**Mind the size for strings**):
