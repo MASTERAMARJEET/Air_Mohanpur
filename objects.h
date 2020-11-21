@@ -1,7 +1,6 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
-#include<stdbool.h>
 
 /* enum for Gender:
     - [0] Male
@@ -117,7 +116,6 @@ typedef struct
     int distance;
     int total_seats;
     int seats_available;
-    bool is_available;
 }Flight;
 
 #endif // OBJECTS_H

@@ -1,12 +1,11 @@
 #include <stdio.h>
-//#include <stdlib.h>
 #include <string.h>
 #include "objects.h"
 #include "file.h"
 
-void user_login();
+void user_login(); //declaration; function defined in user.c
 
-void admin_login();
+void admin_login(); //declaration; function defined in admin.c
 
 void main()
 {
