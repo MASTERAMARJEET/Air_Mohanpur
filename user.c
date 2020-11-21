@@ -5,71 +5,79 @@
 #include "file.h"
 
 
-void user_login()
-{
-	char us_access[4], us_access_No[7], us_user[7], us_pswd[7], us_gender;
+void create_user()
+{	
+char us_gender;		
 	int i, rf;
-	User new_user;
+	User new_user, user_username_check[999];
 
-	printf("\nDo you have an account?\n Enter 'Yes' if you do or 'No' if you don't. \n");
-	scanf("%4s", us_access);
-	if (strcmp(us_access,"No")==0)
+	rf = readFile("data\\User_list.txt",&user_username_check,sizeof(User),999);
+
+	//user_length=sizeof(user)/sizeof(User);
+	printf("\nEnter your name \t: \t");
+	scanf("%50s", new_user.name);
+
+	username_check_goto:
+	printf("\nChoose username \t: \t");
+	scanf("%20s", new_user.id);
+
+	for (i=0; i<rf ; i=i+1)
+		{
+			if (strcmp(user_username_check[i].id, new_user.id)==0) 
+	   		{
+	   			goto username_check_goto;
+	   		}
+	   		else
+	   		{
+	   			break;
+	   		}
+	   	}
+
+	printf("\nChoose password \t: \t");
+	scanf("%20s", new_user.password);
+
+	printf("\nEnter your age \t \t: \t");
+	scanf("%d", &new_user.age);
+
+	printf("\nEnter 'M' for Male, 'F' for female or 'O' for others.");
+	printf("\nEnter your gender \t: \t");
+
+	scanf("\n%c", &us_gender);
+	switch (us_gender)
 	{
-		printf("\nDo you want to make an account?\n If yes, please enter 'Yes'. If no, please enter 'No'.\n");
-		scanf("%3s", us_access_No);
-		if (strcmp(us_access_No,"Yes")==0)
-		{
-			//user_length=sizeof(user)/sizeof(User);
-			printf("\nEnter your name \t: \t");
-			scanf("%50s", new_user.name);
+		case 'M': new_user.gender = Male;
+				  break;
+		case 'F': new_user.gender = Female;
+			      break;
+		case 'O': new_user.gender = Others;
+			      break;
+		default:  printf("Input not in provided format. Choice not saved.");
+			      break;
+	}	
 
-			printf("\nChoose username \t: \t");
-			scanf("%20s", new_user.id);
+	printf("\nEnter your phone number \t: \t");
+	scanf("%15s", new_user.phone_no);
 
-			printf("\nChoose password \t: \t");
-			scanf("%20s", new_user.password);
-
-			printf("\nEnter your age \t \t: \t");
-			scanf("%d", &new_user.age);
-
-			printf("\nEnter 'M' for Male, 'F' for female or 'O' for others.");
-			printf("\nEnter your gender \t: \t");
-
-			scanf("\n%c", &us_gender);
-			switch (us_gender)
-			{
-				case 'M': new_user.gender = Male;
-						  break;
-				case 'F': new_user.gender = Female;
-					      break;
-				case 'O': new_user.gender = Others;
-					      break;
-				default:  printf("Input not in provided format. Choice not saved.");
-					      break;
-			}	
-
-			printf("\nEnter your phone number \t: \t");
-			scanf("%15s", new_user.phone_no);
-
-			printf("\nEnter your email \t: \t");
-			scanf("%50s", new_user.email);
+	printf("\nEnter your email \t: \t");
+	scanf("%50s", new_user.email);
 				
-			appendFile("data\\User_list.txt",&new_user,sizeof(User),1); //check length of user array.
-		}
-		else 
-		{
-			printf("\nSorry, you can only proceed if you have an existing account or are making one.");
-		}
-	}
+	appendFile("data\\User_list.txt",&new_user,sizeof(User),1); //check length of user array.
+}
 
-	else if (strcmp(us_access,"Yes")==0)
-	{	
-		User user_check[99];
-		printf("\nEnter username : ");
-		scanf("%6s", us_user);
-		printf("\nEnter password : ");
-		scanf("%6s", us_pswd);
-		//have to search if these two exist and match.
+
+
+
+
+void authenticate_user()
+{	
+	char us_user[7], us_pswd[7];
+	int i, rf;
+	User user_check[99];
+
+	printf("\nEnter username : ");
+	scanf("%6s", us_user);
+	printf("\nEnter password : ");
+	scanf("%6s", us_pswd);
 
 	rf = readFile("data\\User_list.txt",&user_check,sizeof(User),99);
 	
@@ -85,59 +93,42 @@ void user_login()
     		}
    		else {printf("Username does not exist.");}
 		}
-	}
+
 }
 
 
 
-void admin_login()
+
+
+void user_login()
 {
-	char ad_access[4], ad_access_No[7], ad_user[7], ad_pswd[7];
-	int i, rf;
+	char us_access[4], us_access_No[7];
 
 	printf("\nDo you have an account?\n Enter 'Yes' if you do or 'No' if you don't. \n");
-	scanf("%3s", ad_access);
-	if (strcmp(ad_access,"No")==0)
+	scanf("%4s", us_access);
+
+	if (strcmp(us_access,"No")==0)
 	{
-		printf("\nDo you want to switch to user login?\n If yes, please enter 'ULogin'");
-		scanf("%6s", ad_access_No);
-		if (strcmp(ad_access_No,"ULogin")==0)
+		printf("\nDo you want to make an account?\n If yes, please enter 'Yes'. If no, please enter 'No'.\n");
+		scanf("%3s", us_access_No);
+		if (strcmp(us_access_No,"Yes")==0)
 		{
-			user_login();
-			}
+			create_user();
+		}
 		else 
 		{
-			printf("\nSorry, only existing admins can add admin accounts.");
+			printf("\nSorry, you can only proceed if you have an existing account or are making one.");
 		}
 	}
 
-	else if (strcmp(ad_access,"Yes")==0)
+	else if (strcmp(us_access,"Yes")==0)
 	{
-		Admin admin_check[99];
-		printf("\nEnter admin username : ");
-		scanf("%6s", ad_user);
-		printf("\nEnter admin password : ");
-		scanf("%6s", ad_pswd);
-		//have to search if these two exist and match.
-
-	rf = readFile("data\\Admin_list.txt",&admin_check,sizeof(Admin),99);
-	
-	for (i=0; i<rf ; i=i+1)
-		{
-			if (strcmp(admin_check[i].id, ad_user)==0) 
-	   		{
-        		if(strcmp(admin_check[i].password, ad_pswd)==0) 
-        		{
-        			printf("Your Id is \t: %s and Password is \t: %s\n",admin_check[i].id,admin_check[i].password);
-        		}
-        	else {printf("Enter correct password!");}
-    		}
-   		else {printf("Admin username does not exist. Admin rights not defined.");}
-		}
-	}
-
-	else
-	{
-		print:("\n Please enter one of the two choices listed above.:");
+		authenticate_user();
 	}
 }
+
+
+
+
+
+
