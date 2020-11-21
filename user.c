@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include <stdlib.h>
 #include <string.h>
 #include "objects.h"
 #include "file.h"
@@ -9,9 +8,9 @@ void create_user()
 {	
 char us_gender;		
 	int i, rf;
-	User new_user, user_username_check[999];
+	User new_user, user_username_check[99];
 
-	rf = readFile("data\\User_list.txt",&user_username_check,sizeof(User),999);
+	rf = readFile("data\\User_list.txt",&user_username_check,sizeof(User),99);
 
 	//user_length=sizeof(user)/sizeof(User);
 	printf("\nEnter your name \t: \t");
