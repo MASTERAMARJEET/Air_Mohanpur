@@ -4,6 +4,19 @@
 #include "objects.h"
 #include "file.h"
 
+void admin_page()
+{
+	// char 
+	
+	
+	printf("\nWelcome Admins. Choose what do you want to do.\n");
+	label;
+	printf("If you wish to add new admins, type 'add_ad'.\n If you wish to view the admins, type 'view_ad'\n If you wish to add flights, type 'add_fl'\n If you wish to view the flights, type 'view_fl'\n");
+	// scanf("");
+	add_admin();
+	goto label;
+}
+
 void add_admin()
 {
 	char new_ad[4];
@@ -27,8 +40,9 @@ void add_admin()
 		printf("Function Aborted\n");
 		admin_page();
 	}
-	
-void view_admin();
+}
+
+void view_admin()
 {
 	char view_ad[4];
 	Admin view_admin;
@@ -37,7 +51,7 @@ void view_admin();
 	scanf("%4s", view_ad);
 	if (strcmp(view_ad,"Yes")==0)
 	{
-		printf("\n The admin ids and passwords are visible now\n";);
+		printf("\n The admin ids and passwords are visible now\n");
 		readFile("data/Admin_list.txt",&view_admin,sizeof(Admin),99);
 	}
 	else
@@ -48,7 +62,7 @@ void view_admin();
 	
 }
 
-void add_flight();
+void add_flight()
 {
 	char new_fl[4];
 	Flight new_flight;
@@ -92,7 +106,7 @@ void add_flight();
 	}
 }
 
-void view_flight();
+void view_flight()
 {
 	char view_fl[4];
 	Flight view_flights;
@@ -111,12 +125,3 @@ void view_flight();
 	}
 }
 
-void admin_page()
-{
-	char 
-	
-	
-	printf("\nWelcome Admins. Choose what do you want to do.\n");
-	printf("If you wish to add new admins, type 'add_ad'.\n If you wish to view the admins, type 'view_ad'\n If you wish to add flights, type 'add_fl'\n If you wish to view the flights, type 'view_fl'\n");
-	scanf("")
-}
