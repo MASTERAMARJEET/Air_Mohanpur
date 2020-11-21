@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include "objects.h"
 #include "file.h"
-//function for booking history
+//function for booking history which will show details of the flights booked earlier
 void showbookinghistory(char ticket_file[])
 {
     int i=0, ticket_num;
@@ -27,7 +27,7 @@ void showbookinghistory(char ticket_file[])
         printf("Status: %s\n\n",tickets[i].status);
     }
 }
-//function for cancelling ticket
+//function for cancelling ticket which are yet to be travelled
 void cancelticket(char ticket_file[])
 {
     int i=0, ticket_num, cticket_num;//for ticket number to be cancelled
