@@ -37,7 +37,7 @@ void cancelticket(char ticket_file[])
 //ticket_num gives the maximum number of elements in the array of structure after reading the text file
     ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
     //ticket number asked that has to be cancelled
-    printf("Enter the ticket number of the flight you want to cancel:");
+    printf("Enter the ticket number of the flight you want to cancel: ");
     scanf("%d",&cticket_num);
     if(cticket_num <=ticket_num)//checking whether the ticket exists or not
 	{
@@ -83,14 +83,15 @@ int main()
     
 
     char x[5],y[]="yes";
-    printf("Do you wish to view your Booking History(yes/no)\n");
+    printf("Do you wish to view your Booking History(yes/no)?\n");
     scanf("%s",x);
 //asking the user if he wishes to view booking history
     if(strcmp(x,y)==0) //comparing the input string
     {
         showbookinghistory(user_file);//function called to show booking history
     }
-    printf("Do you wish to cancel any file ticket that you are yet to tarvel(yes/no)\n");
+    
+    printf("Do you wish to cancel any file ticket that you are yet to tarvel(yes/no)?\n");
     scanf("%s",x);
 //asking the user if he wants to cancel any ticket    
     if(strcmp(x,y)==0) //comparing the input string 
