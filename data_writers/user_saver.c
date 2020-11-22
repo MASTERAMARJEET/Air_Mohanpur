@@ -26,6 +26,6 @@ void main()
                 {"Tenzing","Tenzingbendong","I*Love*India",54,Male,"9474640354","Bendong.India@tango.com"},
                 {"Pratap","Shreeprataprathore","PrTaProcks3030",37,Male,"9008360318","Shreeprataprathore@niftr.com"}};
 
-    writeFile(users_file, &existing_users, sizeof(Flight), 10);
+    writeFile(users_file, &existing_users, sizeof(User), 10);
 
 }

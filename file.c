@@ -81,8 +81,5 @@ int readFile(char *file_name, void* data_ptr, int data_size, int elem_num){
 
     fclose(fptr);
 
-    if (feof(fptr)!=0)
-        return elem_count - 1;
-
-    return elem_count;
+    return elem_count - 1;
 }
