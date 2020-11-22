@@ -1,7 +1,8 @@
 #include<stdio.h>
-#include "objects.h"
 #include<string.h>
 #include<math.h>
+#include "objects.h"
+#include "file.h"
 
 
 
@@ -35,7 +36,7 @@ float kitna_paisa(int Age_grp, int dist)
 
 /*This will ask the details of the passenger from the user and generate the final amount and print the ticket on the terminal. 
 It'll will also save the ticket in a text file on the system to keep as records.*/
-void ticket_saver(User user1, Flight flt1, char date[])
+int ticket_saver(User user1, Flight flt1, char date[])
 {
     /*This will follow after the user has searched and chosen his flight of interest (flight no., source and destination etc.) 
     and now giving the passenger details.*/
@@ -59,10 +60,10 @@ journey.
     
 
     if(flt1.seats_available>=1)
-   {
+    {
 
         Ticket new_ticket;
-        char p_name[50];
+        char p_name[50], file_name[50];
         int p_age,Age_grp;
         float fare,price;
 
@@ -72,12 +73,8 @@ journey.
         printf("Kindly enter the age of the passenger:\t");
         scanf("%d",&p_age);
 
-        printf("\nYou've successfully saved the details of the passengers.\n\n");
+        printf("\nYou've successfully booked the flight.\n\n");
         printf("The ticket details are:\n\n");
-
-        printf("a) Passenger details:\n\n");
-        printf("Name of the passenger:\t\t\t%s\n",new_ticket.psngr_name);
-        printf("Age of the passenger:\t\t\t%d\n",p_age);
 
         //This part will classify the passenger into one of the age group based, of course, on their present age.
         if(p_age<2)
@@ -103,61 +100,60 @@ journey.
         strcpy(new_ticket.airline_name,flt1.airline_name);
         strcpy(new_ticket.source,flt1.source);
         strcpy(new_ticket.destination,flt1.destination);
+
         /*The seat no's first char is the first letter of the source, the second char is the first letter of the destination and the
         following no is the seat no of the plane that will be alloted to the passenger.*/
         sprintf(new_ticket.seat_no,"%c%c%d",flt1.flight_no[0],flt1.flight_no[1],flt1.total_seats+1-flt1.seats_available);
-        strcpy(new_ticket.depart_time,flt1.depart_time);
-        strcpy(new_ticket.arrive_time,flt1.arrive_time);
+        sprintf(new_ticket.depart_time,"%s %s",date,flt1.depart_time);
+        sprintf(new_ticket.arrive_time,"%s %s",date,flt1.arrive_time);
         new_ticket.fare = kitna_paisa(new_ticket.psngr_category,flt1.distance);
+        strcpy(new_ticket.status,"Yet to travel");
         
+        printf("a) Passenger details:\n\n");
+        printf("Name of the passenger:\t\t\t%s\n",new_ticket.psngr_name);
+        printf("Age of the passenger:\t\t\t%d\n",p_age);
+
         printf("b) Flight details:\n\n");
         printf("Airline name and flight no.:\t\t%s, %s\t\n",flt1.airline_name,new_ticket.flight_no);
         printf("Boarding station:\t\t\t%s\n",new_ticket.source);
         printf("Destination:\t\t\t\t%s\n",flt1.destination);
         printf("Seat no.:\t\t\t\t%s\n",new_ticket.seat_no);
-        flt1.seats_available-- ;
         printf("Date of journey:\t\t\t%s\t\n",date);
         printf("Departure time:\t\t\t\t%s\n",flt1.depart_time);
         printf("Arrival time:\t\t\t\t%s\n",flt1.arrive_time);
 
         printf("The final ticket price is =\t\tINR  %f\n\n",new_ticket.fare);
 
-        strcpy(new_ticket.status,"Yet to travel");
+        sprintf(file_name,"data/%s_ticket.txt",user1.id);
 
+        appendFile(file_name,&new_ticket,sizeof(Ticket),1);
 
-        FILE* out;
-
-        out = fopen("ticket.txt","w");
-        if(out == NULL)
-        {
-            printf("The file couldn't be opened.\n");
-        }
-
-        fwrite(&new_ticket,sizeof(Ticket),1,out);
-        fclose(out);     
-   }
+        return 1;
    
-   else
-   {
-       printf("Sorry! There's no seat available on this flight.\nLook for another flight which may carry you to your destination.\n");
-   }
+    }
+    
+    else
+    {
+        printf("Sorry! There's no seat available on this flight.\nLook for another flight which may carry you to your destination.\n");
+        return 0;
+    }
 
 
 }
 
 
-// void main()
-// {
-//     User abc = {"fjkajk",
-//                 "kjhkfjahk",
-//                 "random",
-//                 20,
-//                 Male,
-//                 "9966663322",
-//                 "email@email.com"};
+void main()
+{
+    User abc = {"fjkajk",
+                "kjhkfjahk",
+                "random",
+                20,
+                Male,
+                "9966663322",
+                "email@email.com"};
 
-//     Flight flt1 = {"Chennai","Kolkata","CK1060","Air India","12:00 hrs","9:00 hrs",2000,60,46};
-//     char date[] = "22 Nov 2020";
-//     ticket_saver(abc,flt1, date);
+    Flight flt1 = {"Chennai","Kolkata","CK1060","Air India","12:00 hrs","9:00 hrs",2000,60,46};
+    char date[] = "22 Nov 2020";
+    ticket_saver(abc,flt1, date);
    
-// }
+}
