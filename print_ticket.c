@@ -146,18 +146,18 @@ journey.
 }
 
 
-void main()
-{
-    User abc = {"fjkajk",
-                "kjhkfjahk",
-                "random",
-                20,
-                Male,
-                "9966663322",
-                "email@email.com"};
+// void main()
+// {
+//     User abc = {"fjkajk",
+//                 "kjhkfjahk",
+//                 "random",
+//                 20,
+//                 Male,
+//                 "9966663322",
+//                 "email@email.com"};
 
-    Flight flt1 = {"Chennai","Kolkata","CK1060","Air India","12:00 hrs","9:00 hrs",2000,60,46};
-    char date[] = "22 Nov 2020";
-    ticket_saver(abc,flt1, date);
+//     Flight flt1 = {"Chennai","Kolkata","CK1060","Air India","12:00 hrs","9:00 hrs",2000,60,46};
+//     char date[] = "22 Nov 2020";
+//     ticket_saver(abc,flt1, date);
    
-}
+// }
