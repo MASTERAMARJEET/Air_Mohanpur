@@ -79,13 +79,13 @@ void add_flight()
 		scanf("%16s", new_flight.depart_time);
 		
 		printf("\nEnter the distance between two places \t: \t");
-		scanf("%d", new_flight.distance);
+		scanf("%d", &new_flight.distance);
 		
 		printf("\nEnter capacity ie. total number of seats \t: \t");
-		scanf("%d", new_flight.total_seats);
+		scanf("%d", &new_flight.total_seats);
 		
 		printf("\nEnter the number of seats available \t: \t");
-		scanf("%d", new_flight.seats_available);
+		scanf("%d", &new_flight.seats_available);
 		
 		appendFile("data/flight_list.txt",&new_flight,sizeof(Flight),1);
 
