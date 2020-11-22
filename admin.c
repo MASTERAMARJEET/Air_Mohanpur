@@ -6,28 +6,6 @@
 
 void user_login();
 
-void ad_choice()
-{
-	char next_ad_choice[10];
-	label_ad_choice:
-	printf("\nWhat do you want to do now?\nEnter 'Admin' to access more admin functions or enter 'User' to go to user interface\n");
-	scanf("%10s", next_ad_choice);
-	if (strcmp(next_ad_choice,"Admin")==0)
-	{
-		admin_page();	 
-	}
-	else if (strcmp(next_ad_choice,"User")==0)
-	{
-		user_login();
-	}
-	else
-	{
-		printf("Choice invalid!");
-		goto label_ad_choice;
-	}
-	
-	
-}
 void add_admin()
 {
 	char new_ad[4];
@@ -142,7 +120,7 @@ void admin_page()
 	
 	printf("\nWelcome Admin. Choose what do you want to do.\n");
 
-	//label_admin_choice:
+	label_admin_choice:
 	printf("If you wish to add new admins, type 'add_ad'.\n If you wish to view the admins, type 'view_ad'\n If you wish to add flights, type 'add_fl'\n If you wish to view the flights, type 'view_fl'\n");
 	scanf("%9s", ad_choice);
 	if (strcmp(ad_choice,"add_ad")==0)
@@ -165,8 +143,25 @@ void admin_page()
 	{
 		 printf("Input not in provided format. Choice not saved.");
 	}
-
-	//goto label_admin_choice;
+	
+	char next_ad_choice[10];
+	label_ad_choice:
+	printf("\nWhat do you want to do now?\nEnter 'Admin' to access more admin functions or enter 'User' to go to user interface\n");
+	scanf("%10s", next_ad_choice);
+	if (strcmp(next_ad_choice,"Admin")==0)
+	{
+		goto label_admin_choice;	 
+	}
+	else if (strcmp(next_ad_choice,"User")==0)
+	{
+		user_login();
+	}
+	else
+	{
+		printf("Choice invalid!");}
+		
+	
+	
 }
 
 
