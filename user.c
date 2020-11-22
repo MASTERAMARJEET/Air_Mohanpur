@@ -9,6 +9,7 @@ void show_booking_history(char ticket_file[]);
 
 void search_flight(User user);
 
+void authenticate_user();
 
 void create_user()
 {
@@ -16,7 +17,7 @@ void create_user()
 	int i, rf;
 	User new_user, user_username_check[99];
 
-	rf = readFile("data/User_list.txt",&user_username_check,sizeof(User),99);
+	rf = readFile("data/user_list.txt",&user_username_check,sizeof(User),99);
 
 	//user_length=sizeof(user)/sizeof(User);
 	printf("\nEnter your name \t: \t");
@@ -67,7 +68,11 @@ void create_user()
 	printf("\nEnter your email \t: \t");
 	scanf("%50s", new_user.email);
 
-	appendFile("data\\User_list.txt",&new_user,sizeof(User),1); //check length of user array.
+	appendFile("data/user_list.txt",&new_user,sizeof(User),1); //check length of user array.
+
+	printf("Account Creation successful! Now, you can login.\n");
+
+	authenticate_user();
 }
 
 
@@ -87,7 +92,7 @@ void authenticate_user()
 	printf("\nEnter password : ");
 	scanf("%20s", us_pswd);
 
-	rf = readFile("data/User_list.txt",&user_check,sizeof(User),99);
+	rf = readFile("data/user_list.txt",&user_check,sizeof(User),99);
 	printf("%d \n", rf);
 	for (i=0; i<rf ; i=i+1)
 		{
@@ -160,7 +165,7 @@ void user_home(User user){
 
 	printf("Welcome %s\n",user.name);
     start:
-	printf("\nEnter\n - A - to review your previous booking history and cancel a ticket that you are yet to tarvel\n");
+	printf("\nEnter\n - A - to review your previous booking history and cancel a ticket that you are yet to travel\n");
 	printf(" - B - to search and book a new flight\n");
 	printf(" - and press any other key to logout\n: ");
 	scanf("\n%c",&choice);
