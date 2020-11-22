@@ -93,7 +93,6 @@ void authenticate_user()
 	scanf("%20s", us_pswd);
 
 	rf = readFile("data/user_list.txt",&user_check,sizeof(User),99);
-	printf("%d \n", rf);
 	for (i=0; i<rf ; i=i+1)
 		{
 		if (strcmp(user_check[i].id, us_user)==0)
