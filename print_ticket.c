@@ -76,6 +76,29 @@ journey.
         printf("\nYou've successfully booked the flight.\n\n");
         printf("The ticket details are:\n\n");
 
+
+
+
+        /*Here we're copying all the flight and passenger details in the 'Ticket' struct. Using 'Ticket' we'll save the ticket of the
+        passenger in a text file on the system.*/
+        strcpy(new_ticket.flight_no,flt1.flight_no);
+        strcpy(new_ticket.airline_name,flt1.airline_name);
+        strcpy(new_ticket.source,flt1.source);
+        strcpy(new_ticket.destination,flt1.destination);
+
+        /*The seat no's first char is the first letter of the source, the second char is the first letter of the destination and the
+        following no is the seat no of the plane that will be alloted to the passenger.*/
+        sprintf(new_ticket.seat_no,"%c%c%d",flt1.flight_no[0],flt1.flight_no[1],flt1.total_seats+1-flt1.seats_available);
+        sprintf(new_ticket.depart_time,"%s %s",date,flt1.depart_time);
+        sprintf(new_ticket.arrive_time,"%s %s",date,flt1.arrive_time);
+        
+        strcpy(new_ticket.status,"Yet to travel");
+        
+        printf("a) Passenger details:\n\n");
+        printf("Name of the passenger:\t\t\t%s\n",new_ticket.psngr_name);
+        printf("Age of the passenger:\t\t\t%d\n\n",p_age);
+
+
         //This part will classify the passenger into one of the age group based, of course, on their present age.
         if(p_age<2)
         {
@@ -93,25 +116,7 @@ journey.
             printf("Age group of the passenger:\t\tAdult\n\n");
         }
 
-
-        /*Here we're copying all the flight and passenger details in the 'Ticket' struct. Using 'Ticket' we'll save the ticket of the
-        passenger in a text file on the system.*/
-        strcpy(new_ticket.flight_no,flt1.flight_no);
-        strcpy(new_ticket.airline_name,flt1.airline_name);
-        strcpy(new_ticket.source,flt1.source);
-        strcpy(new_ticket.destination,flt1.destination);
-
-        /*The seat no's first char is the first letter of the source, the second char is the first letter of the destination and the
-        following no is the seat no of the plane that will be alloted to the passenger.*/
-        sprintf(new_ticket.seat_no,"%c%c%d",flt1.flight_no[0],flt1.flight_no[1],flt1.total_seats+1-flt1.seats_available);
-        sprintf(new_ticket.depart_time,"%s %s",date,flt1.depart_time);
-        sprintf(new_ticket.arrive_time,"%s %s",date,flt1.arrive_time);
         new_ticket.fare = kitna_paisa(new_ticket.psngr_category,flt1.distance);
-        strcpy(new_ticket.status,"Yet to travel");
-        
-        printf("a) Passenger details:\n\n");
-        printf("Name of the passenger:\t\t\t%s\n",new_ticket.psngr_name);
-        printf("Age of the passenger:\t\t\t%d\n",p_age);
 
         printf("b) Flight details:\n\n");
         printf("Airline name and flight no.:\t\t%s, %s\t\n",flt1.airline_name,new_ticket.flight_no);
@@ -124,8 +129,12 @@ journey.
 
         printf("The final ticket price is =\t\tINR  %f\n\n",new_ticket.fare);
 
+        /*This function is generating the file name that will contain the saved ticket on the system.
+        We're keeping the filename on the name of user's id as it is unique.  */
         sprintf(file_name,"data/%s_ticket.txt",user1.id);
 
+        /*This function is finally appending the newly booked ticket details into the 'file_name' file 
+        that will be generated through this function itself and will be stored on the system.*/
         appendFile(file_name,&new_ticket,sizeof(Ticket),1);
 
         return 1;
