@@ -76,24 +76,24 @@ journey.
         printf("The ticket details are:\n\n");
 
         printf("a) Passenger details:\n\n");
-        printf("Name of the passenger:\t%s\n",new_ticket.psngr_name);
-        printf("Age of the passenger:\t%d\n",p_age);
+        printf("Name of the passenger:\t\t\t%s\n",new_ticket.psngr_name);
+        printf("Age of the passenger:\t\t\t%d\n",p_age);
 
         //This part will classify the passenger into one of the age group based, of course, on their present age.
         if(p_age<2)
         {
             new_ticket.psngr_category = Infant;
-            printf("Age group of the passenger:\tInfant\n");
+            printf("Age group of the passenger:\t\tInfant\n\n");
         }
         else if(2<=p_age && p_age<18)
         {
             new_ticket.psngr_category = Child;
-            printf("Age group of the passenger:\tChild\n");
+            printf("Age group of the passenger:\t\tChild\n\n");
         }
         else
         {
             new_ticket.psngr_category = Adult;
-            printf("Age group of the passenger:\tAdult\n");
+            printf("Age group of the passenger:\t\tAdult\n\n");
         }
 
 
@@ -111,23 +111,38 @@ journey.
         new_ticket.fare = kitna_paisa(new_ticket.psngr_category,flt1.distance);
         
         printf("b) Flight details:\n\n");
-        printf("Airline name and flight no.:\t%s,%s\t\n",flt1.airline_name,new_ticket.flight_no);
-        printf("Boarding station:\t%s\n",new_ticket.source);
-        printf("Destination:\t%s\n",flt1.destination);
-        printf("Seat no.:\t%s\n",new_ticket.seat_no);
+        printf("Airline name and flight no.:\t\t%s, %s\t\n",flt1.airline_name,new_ticket.flight_no);
+        printf("Boarding station:\t\t\t%s\n",new_ticket.source);
+        printf("Destination:\t\t\t\t%s\n",flt1.destination);
+        printf("Seat no.:\t\t\t\t%s\n",new_ticket.seat_no);
         flt1.seats_available-- ;
-        printf("Date of journey:\t%s\n",date);
-        printf("Departure time:\t%s\n",flt1.depart_time);
-        printf("Arrival time:\t%s\n",flt1.arrive_time);
+        printf("Date of journey:\t\t\t%s\t\n",date);
+        printf("Departure time:\t\t\t\t%s\n",flt1.depart_time);
+        printf("Arrival time:\t\t\t\t%s\n",flt1.arrive_time);
 
-        printf("The final ticket price is =\tINR  %f\n",new_ticket.fare);
+        printf("The final ticket price is =\t\tINR  %f\n\n",new_ticket.fare);
 
         strcpy(new_ticket.status,"Yet to travel");
+
+
+        FILE* out;
+
+        out = fopen("ticket.txt","w");
+        if(out == NULL)
+        {
+            printf("The file couldn't be opened.\n");
+        }
+
+        fwrite(&new_ticket,sizeof(Ticket),1,out);
+        fclose(out);     
    }
+   
    else
    {
        printf("Sorry! There's no seat available on this flight.\nLook for another flight which may carry you to your destination.\n");
    }
+
+
 }
 
 
