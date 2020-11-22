@@ -27,7 +27,6 @@ void add_admin()
 	else
 	{
 		printf("Choice aborted!!!\n");
-		//admin_page();
 	}
 }
 
@@ -46,7 +45,6 @@ void view_admin()
 	else
 	{
 		printf("Choice aborted!!!\n");
-		//admin_page();
 	}
 	
 }
@@ -93,8 +91,6 @@ void add_flight()
 	else
 	{
 		printf("Choice aborted!!!\n");
-		//admin_page();
-		
 	}
 }
 
@@ -113,7 +109,6 @@ void view_flight()
 	else
 	{
 		printf("Function Aborted!!!\n");
-		//admin_page();
 	}
 }
 
@@ -148,19 +143,36 @@ void admin_page()
 	{
 		 printf("Input not in provided format. Choice not saved.");
 	}
-
-	goto label_admin_choice;
+	
+	char next_ad_choice[10];
+	label_ad_choice:
+	printf("\nWhat do you want to do now?\nEnter 'Admin' to access more admin functions or enter 'User' to go to user interface\n");
+	scanf("%10s", next_ad_choice);
+	if (strcmp(next_ad_choice,"Admin")==0)
+	{
+		goto label_admin_choice;	 
+	}
+	else if (strcmp(next_ad_choice,"User")==0)
+	{
+		user_login();
+	}
+	else
+	{
+		printf("Choice invalid!");}
+		
+	
+	
 }
 
 
 
 void admin_login()
 {
-	char ad_access[4], ad_access_No[7], ad_user[7], ad_pswd[7];
+	char ad_access[4], ad_access_No[7], ad_user[20], ad_pswd[20];
 	int i, rf;
 	Admin admin_check[99];
 	printf("\nDo you have an account?\n Enter 'Yes' if you do or 'No' if you don't. \n");
-	scanf("%3s", ad_access);
+	scanf("%4s", ad_access);
 	if (strcmp(ad_access,"No")==0)
 	{
 		printf("\nDo you want to switch to user login?\n If yes, please enter 'ULogin'");
