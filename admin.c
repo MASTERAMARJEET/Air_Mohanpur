@@ -78,6 +78,9 @@ void add_flight()
 		printf("\nEnter time of departure \t: \t");
 		scanf("%16s", new_flight.depart_time);
 		
+		printf("\nEnter the distance between two places \t: \t");
+		scanf("%d", new_flight.distance);
+		
 		printf("\nEnter capacity ie. total number of seats \t: \t");
 		scanf("%d", new_flight.total_seats);
 		
@@ -146,7 +149,7 @@ void admin_page()
 		 printf("Input not in provided format. Choice not saved.");
 	}
 
-	goto label;
+	goto label_admin_choice;
 }
 
 
@@ -155,7 +158,7 @@ void admin_login()
 {
 	char ad_access[4], ad_access_No[7], ad_user[7], ad_pswd[7];
 	int i, rf;
-
+	Admin admin_check[99];
 	printf("\nDo you have an account?\n Enter 'Yes' if you do or 'No' if you don't. \n");
 	scanf("%3s", ad_access);
 	if (strcmp(ad_access,"No")==0)
@@ -174,20 +177,23 @@ void admin_login()
 
 	else if (strcmp(ad_access,"Yes")==0)
 	{
-		Admin admin_check[99];
+		
+		rf = readFile("data\\Admin_list.txt",&admin_check,sizeof(Admin),99);
+		
 		printf("\nEnter admin username : ");
-		scanf("%6s", ad_user);
+		scanf("%20s", ad_user);
+		
 		printf("\nEnter admin password : ");
-		scanf("%6s", ad_pswd);
+		scanf("%20s", ad_pswd);
 		//have to search if these two exist and match.
 
-	rf = readFile("data\\Admin_list.txt",&admin_check,sizeof(Admin),99);
+	
 	
 	for (i=0; i<rf ; i=i+1)
 		{
-			if (strcmp(admin_check[i].id, ad_user)==0) 
+		if (strcmp(admin_check[i].id, ad_user)==0) 
 	   		{
-        		if(strcmp(admin_check[i].password, ad_pswd)==0) 
+        	if(strcmp(admin_check[i].password, ad_pswd)==0) 
         		{
         			printf("Your Id is \t: %s and Password is \t: %s\n",admin_check[i].id,admin_check[i].password);
         			printf("Your login is sucessful!");
