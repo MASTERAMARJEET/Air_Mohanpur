@@ -6,11 +6,11 @@
 
 void create_user()
 {	
-char us_gender;		
+	char us_gender;		
 	int i, rf;
 	User new_user, user_username_check[99];
 
-	rf = readFile("data\\User_list.txt",&user_username_check,sizeof(User),99);
+	rf = readFile("data/User_list.txt",&user_username_check,sizeof(User),99);
 
 	//user_length=sizeof(user)/sizeof(User);
 	printf("\nEnter your name \t: \t");
@@ -69,29 +69,42 @@ char us_gender;
 
 void authenticate_user()
 {	
-	char us_user[7], us_pswd[7];
-	int i, rf;
+	char us_user[20], us_pswd[20];
+	int x=0, i, rf;
 	User user_check[99];
 
 	printf("\nEnter username : ");
-	scanf("%6s", us_user);
-	printf("\nEnter password : ");
-	scanf("%6s", us_pswd);
+	scanf("%20s", us_user);
 
-	rf = readFile("data\\User_list.txt",&user_check,sizeof(User),99);
-	
+	label_password_check:
+	printf("\nEnter password : ");
+	scanf("%20s", us_pswd);
+
+	rf = readFile("data/User_list.txt",&user_check,sizeof(User),99);
+	printf("%d \n", rf);
 	for (i=0; i<rf ; i=i+1)
 		{
-			if (strcmp(user_check[i].id, us_user)==0) 
+		if (strcmp(user_check[i].id, us_user)==0) 
 	   		{
-        		if(strcmp(user_check[i].password, us_pswd)==0) 
+        	if(strcmp(user_check[i].password, us_pswd)==0) 
         		{
         			printf("Your Id is \t: %s and Password is \t: %s\n",user_check[i].id,user_check[i].password);
+        			x = 1;
+        			break;
         		}
-        	else {printf("Enter correct password!");}
+        	else 
+        		{
+        			printf("Enter correct password!");
+    				goto label_password_check;
+				}
+			break;
     		}
-   		else {printf("Username does not exist.");}
 		}
+
+	if (x==0)
+	{
+		printf("Invalid login attempt!!!");
+	}
 
 }
 
