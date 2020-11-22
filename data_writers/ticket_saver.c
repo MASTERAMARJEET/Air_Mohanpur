@@ -6,67 +6,10 @@ void main(){
 
     float fare=1500;
 
-    Ticket tickets[5] = {{"Father",
-                        Adult,
-                        "KC1060",
-                        "GoAir",
-                        "Kolkata",
-                        "Chennai",
-                        "KC01",
-                        "2 Feb 2021 15:00 hrs",
-                        "2 Feb 2021 12:00 hrs",
-                        fare,
-                        "Yet to travel"},
+    Ticket tickets[5] = {{"Vidya", Adult, "DB1060","Air India", "Delhi", "Bangalore", "DB01","6 Feb 2021 7:00 hrs", "6 Feb 2021 4:00 hrs", fare, "Yet to travel"},
+{"Rahul", Adult, "MB1060","IndiGo","Mumbai","Bangalore","MB05","8 Feb 2021 14:00 hrs","8 Feb 2021 11:00 hrs",fare,"Yet to travel"}};
 
-                        {"Mother",
-                        Adult,
-                        "KC1060",
-                        "GoAir",
-                        "Kolkata",
-                        "Chennai",
-                        "KC02",
-                        "2 Feb 2021 15:00 hrs",
-                        "2 Feb 2021 12:00 hrs",
-                        fare,
-                        "Yet to travel"},
-
-                        {"Son",
-                        Infant,
-                        "KC1060",
-                        "GoAir",
-                        "Kolkata",
-                        "Chennai",
-                        "KC03",
-                        "2 Feb 2021 15:00 hrs",
-                        "2 Feb 2021 12:00 hrs",
-                        fare,
-                        "Yet to travel"},
-
-                        {"Daughter",
-                        Child,
-                        "KC1060",
-                        "GoAir",
-                        "Kolkata",
-                        "Chennai",
-                        "KC04",
-                        "2 Feb 2021 15:00 hrs",
-                        "2 Feb 2021 12:00 hrs",
-                        fare,
-                        "Yet to travel"},
-
-                        {"Grandpa",
-                        Adult,
-                        "KC1060",
-                        "GoAir",
-                        "Kolkata",
-                        "Chennai",
-                        "KC05",
-                        "2 Feb 2021 15:00 hrs",
-                        "2 Feb 2021 12:00 hrs",
-                        fare,
-                        "Yet to travel"}};
-
-    char user_id[] = "demo_user";
+    char user_id[] = "Tenzingbendong";
     char user_file[50];
     strcpy(user_file,"../data/");
     strcat(user_file,user_id);
