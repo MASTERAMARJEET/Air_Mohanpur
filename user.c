@@ -177,7 +177,7 @@ void user_home(User user){
 		case 'B': search_flight(user);
                 goto start;
 				break;
-		default:  printf("Thank You. Visit again:");
+		default:  printf("Thank You. Visit again!");
 					break;
 	}
 

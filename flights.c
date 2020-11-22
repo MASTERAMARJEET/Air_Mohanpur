@@ -97,7 +97,7 @@ void search_flight(User user){
     flight_num = readFile(flight_list_file,&flights,sizeof(Flight),100);
 
     printf("Welcome to the Air Mohanpur Flight Booking System.\n");
-    printf("We have provide flights from the following airports:\n");
+    printf("We provide flights to and from the following airports:\n");
 
     // This for loop collects the list of airport (mentioned as source) from the data in
     // flight_list.txt
