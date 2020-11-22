@@ -219,6 +219,6 @@ void admin_login()
 
 	else
 	{
-		print:("\n Please enter one of the two choices listed above.:");
+		printf("\n Please enter one of the two choices listed above.:");
 	}
 }
