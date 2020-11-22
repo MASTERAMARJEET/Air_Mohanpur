@@ -5,36 +5,22 @@
 
 
 
-//This function will classify the passenger into an age group based, of course, on their present age.
-int age_grp(int age)
-{
-    int age_group;
-
-    if(age<2)
-        age_group = Infant;
-    else if(2<=age<18)
-        age_group = Child;
-    else
-        age_group = Adult;
-
-    return age_group;
-}
-
-
 //This function is to calculate the fare for the flight based on the age group of the passener and the distance to be travelled.
 float kitna_paisa(int Age_grp, int dist)
 {
     int price;
 
     //This part decides the price based on the distance travelled.
-    if(dist<=1000)
-        price = 3*dist;  //The price is 3.0 INR for the first 1000 kms
-    else if(1000<dist<=2000)
-        price = 3*1000 + 2.5*(dist-1000);   //For the next 1000 kms the rate is 2.5 INR
-    else if(2000<=dist<=4000)
-        price = 3*1000 + 2.5*1000 + 2*(dist-2000); //For the next 2000 kms the rate is 2.0 INR.
+    if(dist<=500)
+        price = 4*dist;  //The price is 4.0 INR for the first 500 kms
+    else if(500<dist  &&  dist<=1000)
+        price = 4*500 + 3*(dist-500);   //The price is 3.0 INR for the next 500 kms.
+    else if(1000<dist  &&  dist<=2000)
+        price = 4*500 + 3*500 + 2.5*(dist-1000);   //For the next 1000 kms the rate is 2.5 INR
+    else if(2000<=dist  &&  dist<=4000)
+        price = 4*500 + 3*500 + 2.5*1000 + 2*(dist-2000); //For the next 2000 kms the rate is 2.0 INR.
     else
-        price = 3*1000 + 2.5*1000 + 2*2000 + 1.5*(dist-4000);  //For the rest of the journey, the price is 1.5 INR. 
+        price = 4*500 + 3*500 + 2.5*1000 + 2*2000 + 1.5*(dist-4000);  //For the rest of the journey, the price is 1.5 INR. 
         
 
     switch(Age_grp)
@@ -47,7 +33,8 @@ float kitna_paisa(int Age_grp, int dist)
     }
 }
 
-
+/*This will ask the details of the passenger from the user and generate the final amount and print the ticket on the terminal. 
+It'll will also save the ticket in a text file on the system to keep as records.*/
 void ticket_saver(User user1, Flight flt1, char date[])
 {
     /*This will follow after the user has searched and chosen his flight of interest (flight no., source and destination etc.) 
@@ -75,23 +62,22 @@ journey.
    {
 
         Ticket new_ticket;
-        char p_name[50],status[15];
+        char p_name[50];
         int p_age,Age_grp;
         float fare,price;
 
         printf("Kindly enter the name of the passenger:\t");
         scanf("%s",new_ticket.psngr_name);
 
-        printf("\nKindly enter the age of the passenger:\t");
+        printf("Kindly enter the age of the passenger:\t");
         scanf("%d",&p_age);
 
-        printf("\nYou've successfully saved the details of the passengers.\n");
-        printf('The ticket details are:\n');
+        printf("\nYou've successfully saved the details of the passengers.\n\n");
+        printf("The ticket details are:\n\n");
 
         printf("a) Passenger details:\n\n");
         printf("Name of the passenger:\t%s\n",new_ticket.psngr_name);
         printf("Age of the passenger:\t%d\n",p_age);
-
 
         //This part will classify the passenger into one of the age group based, of course, on their present age.
         if(p_age<2)
@@ -99,7 +85,7 @@ journey.
             new_ticket.psngr_category = Infant;
             printf("Age group of the passenger:\tInfant\n");
         }
-        else if(2<=p_age<18)
+        else if(2<=p_age && p_age<18)
         {
             new_ticket.psngr_category = Child;
             printf("Age group of the passenger:\tChild\n");
@@ -110,6 +96,9 @@ journey.
             printf("Age group of the passenger:\tAdult\n");
         }
 
+
+        /*Here we're copying all the flight and passenger details in the 'Ticket' struct. Using 'Ticket' we'll save the ticket of the
+        passenger in a text file on the system.*/
         strcpy(new_ticket.flight_no,flt1.flight_no);
         strcpy(new_ticket.airline_name,flt1.airline_name);
         strcpy(new_ticket.source,flt1.source);
@@ -122,7 +111,7 @@ journey.
         new_ticket.fare = kitna_paisa(new_ticket.psngr_category,flt1.distance);
         
         printf("b) Flight details:\n\n");
-        printf("Airline name and flight no.:\t%s,%%s\t\n",flt1.airline_name,new_ticket.flight_no);
+        printf("Airline name and flight no.:\t%s,%s\t\n",flt1.airline_name,new_ticket.flight_no);
         printf("Boarding station:\t%s\n",new_ticket.source);
         printf("Destination:\t%s\n",flt1.destination);
         printf("Seat no.:\t%s\n",new_ticket.seat_no);
@@ -132,7 +121,8 @@ journey.
         printf("Arrival time:\t%s\n",flt1.arrive_time);
 
         printf("The final ticket price is =\tINR  %f\n",new_ticket.fare);
-        char status = "Ticket booked. Yet to travel.";
+
+        strcpy(new_ticket.status,"Yet to travel");
    }
    else
    {
