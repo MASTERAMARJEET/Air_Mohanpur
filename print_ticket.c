@@ -40,25 +40,9 @@ int ticket_saver(User user1, Flight flt1, char date[])
 {
     /*This will follow after the user has searched and chosen his flight of interest (flight no., source and destination etc.) 
     and now giving the passenger details.*/
-
-/*I've user the details (usr1.id etc.) and flight chosen(flt1).
-I need to print and save the ticket details like departure and arrival time along with the date of
-journey.  
-
-
-    char psngr_name[51];         (I've to ask this.)
-    enum AgeGrp psngr_category;  (I will ask the age of the passenger and classify him as infant/child etc.)
-    char flight_no[11];             (This is from flt1)
-    char airline_name[21];          (This is from flt1)
-    char source[21];                (This is from flt1)
-    char destination[21];           (This is from flt1)
-    char seat_no[11];              (Still to be thought.)
-    char arrive_time[51];           (This is from flt1)
-    char depart_time[51];           (This is from flt1)
-    float fare;                     (Have to write a function acc to age grp and distance of the journey)
-    char status[15];                (Booked. Yet to travel.)*/
     
 
+    //The following commands will be carried out only if there's at least 1 seat available on the flight.
     if(flt1.seats_available>=1)
     {
 
@@ -150,19 +134,3 @@ journey.
 
 }
 
-
-void main()
-{
-    User abc = {"fjkajk",
-                "kjhkfjahk",
-                "random",
-                20,
-                Male,
-                "9966663322",
-                "email@email.com"};
-
-    Flight flt1 = {"Chennai","Kolkata","CK1060","Air India","12:00 hrs","9:00 hrs",2000,60,46};
-    char date[] = "22 Nov 2020";
-    ticket_saver(abc,flt1, date);
-   
-}
