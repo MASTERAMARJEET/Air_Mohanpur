@@ -152,6 +152,11 @@ void user_login() //function at the begining asking user basic questions
 	{
 		authenticate_user(); //calling the function to validate the already existing account 
 	}
+	else 
+	{
+	printf("\nPlease enter a valid choice from the two listed above.");
+	}
+
 }
 
 
@@ -181,7 +186,7 @@ void user_home(User user){
 		case 'B': search_flight(user); //calls the search flight function which searches new flight for the user to book
                 goto start;
 				break;
-		default:  printf("Thank You. Visit again!"); //shows this output when the user doesn't choose anything
+		default:  printf("Thank You. Visit again!\n\n"); //shows this output when the user doesn't choose anything
 					break;
 	}
 
