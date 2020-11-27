@@ -116,7 +116,7 @@ int ticket_saver(User user1, Flight flt1, char date[])
 
         /*This function is generating the file name that will contain the saved ticket on the system.
         We're keeping the filename on the name of user's id as it is unique.  */
-        sprintf(file_name,"data/%s_ticket.txt",user1.id);
+        sprintf(file_name,"data/%s_tickets.txt",user1.id);
 
         /*This function is finally appending the newly booked ticket details into the 'file_name' file 
         that will be generated through this function itself and will be stored on the system.*/
