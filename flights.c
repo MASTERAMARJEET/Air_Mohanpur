@@ -211,7 +211,7 @@ void search_flight(User user){
         scanf("%d",&flight_choice);
         printf("Choice registered!\n");
 
-        ticket_status = ticket_saver(user,filtered[flight_choice],date);
+        ticket_status = ticket_saver(user,filtered[flight_choice-1],date);
     }
 
 }

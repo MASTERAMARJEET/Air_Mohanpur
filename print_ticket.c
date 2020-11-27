@@ -40,9 +40,8 @@ int ticket_saver(User user1, Flight flt1, char date[])
 {
     /*This will follow after the user has searched and chosen his flight of interest (flight no., source and destination etc.) 
     and now giving the passenger details.*/
-    
 
-    //The following commands will be carried out only if there's at least 1 seat available on the flight.
+
     if(flt1.seats_available>=1)
     {
 

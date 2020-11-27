@@ -10,10 +10,10 @@ void cancel_ticket(char ticket_file[])
     int i=0, ticket_num, cticket_num;//for ticket number to be cancelled
     char sts[]="cancelled";
 
-    Ticket tickets[20];//array of structure with size 20
+    Ticket tickets[5];//array of structure with size 20
 
     // ticket_num gives the maximum number of elements in the array of structure after reading the text file
-    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),20);
+    ticket_num = readFile(ticket_file,&tickets,sizeof(Ticket),5);
 
     // If the ticket_num is zero, then no ticket to cancel. Function exits right away
     if (ticket_num==0){
