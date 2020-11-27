@@ -120,7 +120,7 @@ void search_flight(User user){
     char airport_list[15][20], src_choice[20], dest_choice[20];
     Flight flights[100], filtered[100];
     int i, j, flight_num, filter_num, counter=0, key, flight_choice;
-    int ticket_status;
+    int seat_status;
 
     flight_num = readFile(flight_list_file,&flights,sizeof(Flight),100);
 
@@ -204,6 +204,7 @@ void search_flight(User user){
             printf("Flight no.: %s\t",filtered[i].flight_no);
             printf("%s -> %s\n",filtered[i].source, filtered[i].destination);
             printf("Airline Name: %s\n",filtered[i].airline_name);
+			printf("Total Seats: %d \t Seats Available: %d\n",filtered[i].total_seats, filtered[i].seats_available);
             printf("Departure time: %s \t Arrival time: %s\n\n",filtered[i].depart_time, filtered[i].arrive_time);
         }
 
@@ -211,7 +212,16 @@ void search_flight(User user){
         scanf("%d",&flight_choice);
         printf("Choice registered!\n");
 
-        ticket_status = ticket_saver(user,filtered[flight_choice-1],date);
+        seat_status = ticket_saver(user,filtered[flight_choice-1],date);
+
+        if (seat_status==1){
+            for (i=0;i<flight_num;i++){
+                if (strcmp(filtered[flight_choice-1].flight_no,flights[i].flight_no)==0){
+                    flights[i].seats_available--;
+                    writeFile(flight_list_file,&flights,sizeof(Flight),flight_num);
+                }
+            }
+        }
     }
 
 }

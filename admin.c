@@ -67,6 +67,7 @@ void admin_search_flt(char mode)    //function for admins to search flights
             printf("Source: %s\n",filtered[i].source);             //details of the flight
             printf("Destination: %s\n",filtered[i].destination);
             printf("Airline Name: %s\n",filtered[i].airline_name);
+			printf("Total Seats: %d \t Seats Available: %d\n",filtered[i].total_seats, filtered[i].seats_available);
             printf("Departure time: %s \t Arrival time: %s\n\n",filtered[i].depart_time, filtered[i].arrive_time);
         }
     }

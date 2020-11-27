@@ -105,7 +105,9 @@ int ticket_saver(User user1, Flight flt1, char date[])
         printf("Airline name and flight no.:\t\t%s, %s\t\n",flt1.airline_name,new_ticket.flight_no);
         printf("Boarding station:\t\t\t%s\n",new_ticket.source);
         printf("Destination:\t\t\t\t%s\n",flt1.destination);
-        printf("Seat no.:\t\t\t\t%s\n",new_ticket.seat_no);
+        if (new_ticket.psngr_category != Infant){
+            printf("Seat no.:\t\t\t\t%s\n",new_ticket.seat_no);
+        }
         printf("Date of journey:\t\t\t%s\t\n",date);
         printf("Departure time:\t\t\t\t%s\n",flt1.depart_time);
         printf("Arrival time:\t\t\t\t%s\n",flt1.arrive_time);
@@ -120,7 +122,13 @@ int ticket_saver(User user1, Flight flt1, char date[])
         that will be generated through this function itself and will be stored on the system.*/
         appendFile(file_name,&new_ticket,sizeof(Ticket),1);
 
-        return 1;
+        if (new_ticket.psngr_category == Infant){
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
    
     }
     
