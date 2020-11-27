@@ -119,7 +119,7 @@ void search_flight(User user){
     char prompt, date[25];
     char airport_list[15][20], src_choice[20], dest_choice[20];
     Flight flights[100], filtered[100];
-    int i, j, flight_num, filter_num, counter=0, key, flight_choice;
+    int i, j, flight_num, filter_num=0, counter=0, key, flight_choice;
     int seat_status;
 
     flight_num = readFile(flight_list_file,&flights,sizeof(Flight),100);
