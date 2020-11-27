@@ -5,3 +5,4 @@
 !*.md
 !.gitignore
 !/data*
+!Makefile
